@@ -15,20 +15,22 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        //
-        //dd(request('filter'));
-        // dd("hi");
-        // $query = Pizza::query();
-
-        // foreach (request('filter',[]) as $filter => $value) {
-        //     $query->where($filter,'LIKE',"%{$value}%");
-        // }
 
 
-        // return response()->json([
-        //     'data' => $query->get()->map(function($ingredient){
-        //         return ['name' => $ingredient->name,'price' => $ingredient->price];
-        //     })], 200);
+        $query = Pizza::query();
+
+        foreach (request('filter',[]) as $filter => $value) {
+
+           if(!$query->hasNamedScope($filter)){
+            return response()->json([
+                'Message' => "El Filtro '{$filter}' no es permitido"], 400);
+            }
+
+            $query->{$filter}($value);
+        }
+
+
+        return response()->json($query->with('ingredients')->simplePaginate(), 200);
     }
 
 
@@ -42,14 +44,18 @@ class PizzaController extends Controller
     public function store(Request $request)
     {
         //
+
         try {
+            $request->validate([
+                'name' => 'required|string',
+            ]);
             Pizza::create($request->all());
 
             return response()->json("Pizza Guardada",201);
 
         } catch (\Throwable $th) {
             //throw $th;
-            return response()->json($th->getmessage() ,400);
+            return response()->json("Error en Datos",400);
         }
 
     }
@@ -64,14 +70,7 @@ class PizzaController extends Controller
     {
         //
 
-        $price = $pizza->ingredients()->pluck('price')->reduce(function ($carry,$item){
-                return $carry + $item;
-            });
-        return  response()->json([
-            'data' => [
-                'name' => $pizza->name,
-                'price' => $price,
-            ]],200);
+        return  $pizza;
     }
 
 
@@ -88,7 +87,7 @@ class PizzaController extends Controller
         try {
              $pizza->name = $request->name;
              $pizza->save();
-            return response()->json("Pizza Update",200);
+            return response()->json("Pizza Actualizada",200);
 
         } catch (\Throwable $th) {
             //throw $th;
@@ -107,7 +106,7 @@ class PizzaController extends Controller
         try {
             $pizza->delete();
 
-           return response()->json("Pizza Deleted",200);
+           return response()->json("Pizza Eliminada",200);
 
        } catch (\Throwable $th) {
            //throw $th;
@@ -124,12 +123,12 @@ class PizzaController extends Controller
                 $pizza->save();
 
 
-           return response()->json("Add Ingredient",200);
+           return response()->json("Ingrediente Agregado",200);
 
        } catch (\Throwable $th) {
            //throw $th;
 
-           return response()->json($th->getmessage() ,400);
+           return response()->json("Error en los datos",400);
        }
     }
     public function del_ingredient(Request $request, Pizza $pizza)
@@ -139,7 +138,7 @@ class PizzaController extends Controller
             $pizza->price = $pizza->price();
             $pizza->save();
 
-           return response()->json("Pizza Deleted",200);
+           return response()->json("Ingrediente Elminado",200);
 
        } catch (\Throwable $th) {
            //throw $th;
@@ -152,9 +151,7 @@ class PizzaController extends Controller
         try {
 
             return response()->json([
-                'data' => $pizza->ingredients()->OrderBy('name')->get()->map(function($ingredient){
-                    return ['name' => $ingredient->name,'price' => $ingredient->price];
-                })],200);
+                'data' => $pizza->ingredients()->get()],200);
 
        } catch (\Throwable $th) {
            //throw $th;

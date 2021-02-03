@@ -1,0 +1,832 @@
+{
+	"info": {
+		"_postman_id": "5005ea72-3751-4749-a4f9-b3397c58798a",
+		"name": "pizza",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Pizzas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Pizza\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pizzeria.test/api/pizzas",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"pizzas"
+					]
+				},
+				"description": "Crear una pizza indicando el atributo name"
+			},
+			"response": [
+				{
+					"name": "Crear Pizzas",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Pizza\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://pizzeria.test/api/pizzas",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"pizzas"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Actualizar Pizza",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Delevery\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pizzeria.test/api/pizzas/1",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"pizzas",
+						"1"
+					]
+				},
+				"description": "Actualiza el nombre de la pizza"
+			},
+			"response": [
+				{
+					"name": "Actualizar Pizza",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Delevery\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://pizzeria.test/api/pizza/1",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"pizza",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar Pizza",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://pizzeria.test/api/pizzas/2",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"pizzas",
+						"2"
+					]
+				},
+				"description": "Elimina una pizza"
+			},
+			"response": [
+				{
+					"name": "Eliminar Pizza",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://pizzeria.test/api/pizza/2",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"pizza",
+								"2"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Agregar Ingredientes a la Pizza",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idIngredient\":[3,4,5]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pizzeria.test/api/pizzas/1/addIngredient",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"pizzas",
+						"1",
+						"addIngredient"
+					]
+				},
+				"description": "Permite añadir uno o varios ingredientes a la Pizza"
+			},
+			"response": [
+				{
+					"name": "Agregar Ingredientes a la Pizza",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idIngredient\":[3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://pizzeria.test/api/pizza/1/addIngredient",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"pizza",
+								"1",
+								"addIngredient"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar ingrediente de una Pizza",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idIngredient\":[3,2,1]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pizzeria.test/api/pizzas/1/delIngredient",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"pizzas",
+						"1",
+						"delIngredient"
+					]
+				},
+				"description": "Permite eliminar uno o varios ingredientes de una pizza"
+			},
+			"response": [
+				{
+					"name": "Eliminar ingrediente de una Pizza",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idIngredient\":[3,2,1]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://pizzeria.test/api/pizza/1/delIngredient",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"pizza",
+								"1",
+								"delIngredient"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Listar todas las pizzas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://pizzeria.test/api/pizzas",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"pizzas"
+					]
+				},
+				"description": "Permite listar todas las pizzas con sus ingredientes"
+			},
+			"response": [
+				{
+					"name": "Listar todas las pizzas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://pizzeria.test/api/pizzas",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"pizzas"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Visualizar una Pizza",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://pizzeria.test/api/pizzas/1",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"pizzas",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Listar todas las pizzas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://pizzeria.test/api/pizzas",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"pizzas"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Filtro de Pizza",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://pizzeria.test/api/pizzas?filter[name]=pizza",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"pizzas"
+					],
+					"query": [
+						{
+							"key": "filter[name]",
+							"value": "pizza"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Filtro de Pizza",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://pizzeria.test/api/pizzas?filter[name]=pizza",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"pizzas"
+							],
+							"query": [
+								{
+									"key": "filter[name]",
+									"value": "pizza"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Lista Ingredientes de una pizza",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://pizzeria.test/api/pizzas/1/ingredients",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"pizzas",
+						"1",
+						"ingredients"
+					]
+				},
+				"description": "Lista todos los ingredientges de una pizza"
+			},
+			"response": [
+				{
+					"name": "Lista Ingredientes de una pizza",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://pizzeria.test/api/pizza/3/ingredients",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"pizza",
+								"3",
+								"ingredients"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Crear Ingrediente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"cebolla\",\r\n    \"price\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pizzeria.test/api/ingredients",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"ingredients"
+					]
+				},
+				"description": "Crea un ingrediente indicando el nombre y su precio"
+			},
+			"response": [
+				{
+					"name": "Crear Ingrediente",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"cebolla\",\r\n    \"price\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://pizzeria.test/api/ingredient",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"ingredient"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Actualizar Ingrediente",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"cebolla\",\r\n    \"price\": 101\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pizzeria.test/api/ingredients/2",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"ingredients",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar Ingrediente",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"cebolla\",\r\n    \"price\": 101\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://pizzeria.test/api/ingredients/2",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"ingredients",
+								"2"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar Ingrediente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://pizzeria.test/api/ingredients/1",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"ingredients",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar Ingrediente",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://pizzeria.test/api/ingredients/1",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"ingredients",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Listar todos lo ingredientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://pizzeria.test/api/ingredients",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"ingredients"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Listar todos lo ingredientes",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://pizzeria.test/api/ingredients",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"ingredients"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Visualiza un ingrediente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://pizzeria.test/api/ingredients/1",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"ingredients",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Visualiza un ingrediente",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://pizzeria.test/api/ingredients/1",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"ingredients",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Filtro de ingredientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://pizzeria.test/api/ingredients?filter[name]=cebolla",
+					"protocol": "http",
+					"host": [
+						"pizzeria",
+						"test"
+					],
+					"path": [
+						"api",
+						"ingredients"
+					],
+					"query": [
+						{
+							"key": "filter[name]",
+							"value": "cebolla"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Filtro de ingredientes",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://pizzeria.test/api/ingredients?filter[name]=cebolla",
+							"protocol": "http",
+							"host": [
+								"pizzeria",
+								"test"
+							],
+							"path": [
+								"api",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "filter[name]",
+									"value": "cebolla"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}

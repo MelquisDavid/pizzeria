@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Builder;
 class Ingredient extends Model
 {
     use HasFactory;
@@ -16,5 +16,8 @@ class Ingredient extends Model
         return $this->belongsToMany(Pizza::class);
     }
 
-    
+    public function scopeName(Builder $query, $value){
+        $query->where('name', 'LIKE',"%{$value}%");
+    }
+
 }

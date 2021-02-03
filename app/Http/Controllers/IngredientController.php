@@ -15,7 +15,20 @@ class IngredientController extends Controller
     public function index()
     {
         //
-        return Ingredient::all();
+        $query = Ingredient::query();
+
+        foreach (request('filter',[]) as $filter => $value) {
+
+           if(!$query->hasNamedScope($filter)){
+            return response()->json([
+                'Message' => "El Filtro '{$filter}' no es permitido"], 400);
+            }
+
+            $query->{$filter}($value);
+        }
+
+
+        return response()->json($query->simplePaginate(), 200);
     }
 
     /**
@@ -27,10 +40,15 @@ class IngredientController extends Controller
     public function store(Request $request)
     {
         //
+
         try {
+            $request->validate([
+                'name' => 'required|string',
+                'price' => 'required|numeric',
+            ]);
             Ingredient::create($request->all());
 
-            return response()->json("Ingrediente Guardada",201);
+            return response()->json("Ingrediente Guardado",201);
 
         } catch (\Throwable $th) {
             //throw $th;
@@ -67,7 +85,7 @@ class IngredientController extends Controller
             $ingredient->name = $request->name;
             $ingredient->price = $request->price;
             $ingredient->save();
-            return response()->json("Ingrediente Update",200);
+            return response()->json("Ingrediente Actualizado",200);
 
         } catch (\Throwable $th) {
             //throw $th;
@@ -85,9 +103,15 @@ class IngredientController extends Controller
     {
         //
         try {
+            $pizzas = $ingredient->pizza()->get();
             $ingredient->delete();
+            foreach ($pizzas as $value) {
+                $value->price = $value->price();
+                $value->save();
+            }
 
-           return response()->json("Ingrediente Deleted",200);
+
+           return response()->json("Ingrediente Eliminado",200);
 
        } catch (\Throwable $th) {
            //throw $th;

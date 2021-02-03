@@ -23,23 +23,28 @@ class FilterPizzasTest extends TestCase
             'name' => 'Boscaiola'
         ]);
 
-            $url = route('api:v1:pizzas.index',['filter[name]' => 'Quesos']);
+            $url = route('pizzas.index',['filter[name]' => 'Quesos']);
 
-            // $this->getJson($url)
-            //     ->assertJsonCount(1,'data')
-            //     ->assertSee('4 Quesos')
-            //     ->assertDontSee('Boscaiola')
-            //     ;
-
-               // dd($url);
-                $this->jsonApi()->get($url)->dump()
-                    ->assertJsonCount(1,'data')
-                    ->assertSee('4 Quesos')
-                    ->assertDontSee('Boscaiola')
-                    ;
-
-
-
-
+            $this->getJson($url)
+                ->assertJsonCount(1,'data')
+                ->assertSee('4 Quesos')
+                ->assertDontSee('Boscaiola')
+                ;
     }
+        /**  @test  */
+        public function cannot_filter_pizza_by_unknow_filters()
+        {
+            $this->withoutExceptionHandling();
+            Pizza::factory()->create([
+                'name' => '4 Quesos'
+            ]);
+            Pizza::factory()->create([
+                'name' => 'Boscaiola'
+            ]);
+
+                $url = route('pizzas.index',['filter[names]' => 'Quesos']);
+
+                $this->getJson($url)
+                ->assertStatus(400);
+        }
 }
