@@ -11,6 +11,8 @@ class ListPizzaTest extends TestCase
 {
 
     use RefreshDatabase;
+
+
     /**  @test  */
 
 
@@ -20,9 +22,9 @@ class ListPizzaTest extends TestCase
         $this->withoutExceptionHandling();
         $pizza =Pizza::factory()->create();
 
+        $url = route('api:v1:pizzas.read',$pizza);
 
-
-        $response = $this->getJson(route('pizza.show',$pizza));
+        $response = $this->jsonApi()->get($url);
 
 
         $response->assertSee($pizza->name);
@@ -39,7 +41,9 @@ class ListPizzaTest extends TestCase
 
         //dd($pizza);
 
-        $response = $this->getJson(route('pizza.index'));
+        $url = route('api:v1:pizzas.index');
+
+        $response = $this->jsonApi()->get($url);
 
        // dd($response);
        foreach ($pizza as $value) {
@@ -49,32 +53,46 @@ class ListPizzaTest extends TestCase
 
         /**  @test  */
 
-     public function cant_create_pizza()
-        {
+    //  public function cant_create_pizza()
+    //     {
 
-            $this->withoutExceptionHandling();
+    //         $this->withoutExceptionHandling();
 
-            $pizza =Pizza::factory()->raw();
-            //dd($pizza);
+    //         $pizza =Pizza::factory()->raw();
+    //         //dd($pizza);
 
-            $response = $this->postJson(route('pizza.store'),$pizza);
+    //         $response = $this->postJson(route('pizza.store'),$pizza);
 
-            $response
-            ->assertStatus(201);
-        }
+    //         $response
+    //         ->assertStatus(201);
+    //     }
 
-                /**  @test  */
+    //             /**  @test  */
 
-     public function cannot_create_pizza()
-     {
+    //  public function cannot_create_pizza()
+    //  {
 
-         $this->withoutExceptionHandling();
+    //      $this->withoutExceptionHandling();
 
-         $response = $this->postJson(route('pizza.store'),['names' => 'Sally']);
+    //      $response = $this->postJson(route('pizza.store'),['names' => 'Sally']);
 
-         $response
-         ->assertStatus(400);
-     }
+    //      $response
+    //      ->assertStatus(400);
+    //  }
+
+    // /**  @test  */
+
+    // public function cant_update_pizza()
+    // {
+
+    //     $this->withoutExceptionHandling();
+    //     $pizza =Pizza::factory()->create();
+
+    //     $response = $this->patchJson(route('pizza.update',$pizza),['name' => 'Sally']);
+
+    //     $response
+    //     ->assertStatus(200);
+    // }
 
 
 }

@@ -15,16 +15,7 @@ class IngredientController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Ingredient::all();
     }
 
     /**
@@ -36,6 +27,15 @@ class IngredientController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            Ingredient::create($request->all());
+
+            return response()->json("Ingrediente Guardada",201);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json("Error en los datos",400);
+        }
     }
 
     /**
@@ -47,18 +47,10 @@ class IngredientController extends Controller
     public function show(Ingredient $ingredient)
     {
         //
+        return $ingredient;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ingredient  $ingredient
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ingredient $ingredient)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -69,8 +61,19 @@ class IngredientController extends Controller
      */
     public function update(Request $request, Ingredient $ingredient)
     {
+
         //
-    }
+        try {
+            $ingredient->name = $request->name;
+            $ingredient->price = $request->price;
+            $ingredient->save();
+            return response()->json("Ingrediente Update",200);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json("Error en los datos",400);
+        }
+}
 
     /**
      * Remove the specified resource from storage.
@@ -81,5 +84,14 @@ class IngredientController extends Controller
     public function destroy(Ingredient $ingredient)
     {
         //
+        try {
+            $ingredient->delete();
+
+           return response()->json("Ingrediente Deleted",200);
+
+       } catch (\Throwable $th) {
+           //throw $th;
+           return response()->json("Error en los datos",400);
+       }
     }
 }

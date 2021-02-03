@@ -16,6 +16,7 @@ class CreatePizzasTable extends Migration
         Schema::create('pizzas', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->double("price")->nullable()->default(0);
             $table->timestamps();
         });
     }

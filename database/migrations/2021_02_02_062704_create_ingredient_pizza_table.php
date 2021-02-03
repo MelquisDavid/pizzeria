@@ -17,7 +17,8 @@ class CreateIngredientPizzaTable extends Migration
             $table->id();
             $table->unsignedInteger("pizza_id");
             $table->unsignedInteger("ingredient_id");
-            $table->timestamps();
+            $table->foreign('pizza_id')->references('id')->on('pizzas')->onDelete('cascade');
+            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
         });
     }
 
